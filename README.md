@@ -9,7 +9,6 @@
 ## 安装
 ```
 yarn add medusa-loader -D
-
 ```
 
 ## 使用方式 最简单的姿势
@@ -24,7 +23,6 @@ yarn add medusa-loader -D
       dist: './dist'
     }
   }
-
 ```
 引入之后会在根目录的 dist 文件夹下生成四份文件分别为
 
@@ -34,7 +32,6 @@ yarn add medusa-loader -D
 /pages/index/index.wxss
 /pages/index/index.json
 /pages/index/index.js
-
 ```
 
 ### 关于语法
@@ -82,7 +79,6 @@ underscore (website)
 vash
 walrus (website)
 whiskers
-
 ```
 
 

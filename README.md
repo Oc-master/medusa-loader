@@ -100,7 +100,7 @@ script标签使用babel转换过的 script 标签中的内容
 ```
 <json>
   {
-    "navigationBarTitleText": "查看启动日志"
+    "navigationBarTitleText": "medusa-loader"
   }
 </json>
 ```

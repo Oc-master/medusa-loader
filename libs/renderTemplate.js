@@ -1,12 +1,11 @@
-const { resolve } = require('path');
 const { outputFileSync } = require('fs-extra');
 const { getOptions, interpolateName } = require('loader-utils');
 /** 解析模板语言工具包 */
 const cons = require('consolidate');
 
-const render = (lang, html, options) => {
+const render = (lang, html, opt) => {
   new Promise(resolve => {
-    cons[lang].render(html, options, (err, res) => {
+    cons[lang].render(html, opt, (err, res) => {
       if (err) throw err;
       resolve(res);
     });

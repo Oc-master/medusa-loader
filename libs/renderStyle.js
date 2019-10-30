@@ -4,7 +4,7 @@ const { getOptions, interpolateName } = require('loader-utils');
 /** 解析预编译语言 */
 const con = {
   less: (file, data) => {
-    new Promise(resolve => {
+    return new Promise(resolve => {
       require('less').render(data, { filename: file }, (err, output) => {
         if (err) throw err;
         resolve(output.css);
@@ -12,7 +12,7 @@ const con = {
     });
   },
   scss: (file, data) => {
-    new Promise(resolve => {
+    return new Promise(resolve => {
       require('node-sass').render({ file, data }, (err, result) => {
         if (err) throw err;
         resolve(result.css);
@@ -20,7 +20,7 @@ const con = {
     });
   },
   sass: (file, data) => {
-    new Promise(resolve => {
+    return new Promise(resolve => {
       require('node-sass').render({ file, data, indentedSyntax: true }, (err, result) => {
         if (err) throw err;
         resolve(result.css);
@@ -28,7 +28,7 @@ const con = {
     });
   },
   stylus: (file, data) => {
-    new Promise(resolve => {
+    return new Promise(resolve => {
       require('stylus').render(data, { fileName: file }, (err, css) => {
         if (err) throw err;
         resolve(css);

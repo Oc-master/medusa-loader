@@ -66,14 +66,14 @@ module.exports = async function({ lang, content }) {
     stylesheet = await render(fullPath, stylesheet);
   }
 
-  const options = {
+  const postcssOptions = {
     multiplier: 1,
     propList: ['*'],
     replace: true,
     mediaQuery: false,
     minPixelValue: 0,
   };
-  const processedCss = postcss(pxtorpx(options)).process(stylesheet).css;
+  const processedCss = postcss(pxtorpx(postcssOptions)).process(stylesheet).css;
 
   outputFileSync(outputPath, processedCss);
 

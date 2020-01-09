@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "@medusa/medusa-loader",
   "version": "1.0.0",
   "description": "medusa框架文件内容解析loader",
@@ -21,4 +22,29 @@
     "swan",
     "loader"
   ]
+=======
+  "name": "medusa-loader",
+  "version": "1.0.1",
+  "description": "微信小程序分离文件loader",
+  "main": "index.js",
+  "author": "OC",
+  "license": "MIT",
+  "babel": {
+    "babelrc": false,
+    "presets": [
+      ["env", { "modules": false }]
+    ]
+  },
+  "dependencies": {
+    "fs-extra": "^3.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-preset-env": "^1.4.0",
+    "consolidate": "^0.14.5",
+    "loader-utils": "^1.1.0",
+    "lodash": "^4.17.4",
+    "vue-template-compiler": "^2.3.3"
+  }
+>>>>>>> 7d67f782d1c9d60cb177f4cec1c00d93a35ed396
 }

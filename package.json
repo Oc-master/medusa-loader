@@ -12,7 +12,13 @@
     "consolidate": "^0.15.1",
     "fs-extra": "^8.1.0",
     "loader-utils": "^1.2.3",
+    "postcss": "^7.0.26",
+    "postcss-pxtorpx": "^1.0.0",
     "vue-template-compiler": "^2.6.10"
   },
-  "keywords": ["wx", "swan", "loader"]
+  "keywords": [
+    "wx",
+    "swan",
+    "loader"
+  ]
 }

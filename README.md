@@ -1,30 +1,38 @@
-# 解析类vue文件生成原生小程序文件
+# medusa-loader
 
-## 关于
+medusa-loader 提供了以类 Vue 文件形式编写微信小程序代码的能力，在赋予单文件编写能力的同时还提供了各类模板语言与样式预编译语言的功能。
 
-解析类vue语法文件，动态生成对应的 wxml、wxss、js 等几个文件。
+## Installation
 
-## 安装
+```shell
+$ npm install medusa-loader --save
 ```
-yarn add medusa-loader -D
-```
 
-## 使用方式
-在webpack loader 引入
+## Usage
 
-```
-  {
-    test: /\.mc$/,
-    loader: 'medusa-loader',
-    options: {
-      path: path.resolve(process.cwd(), './')
-    }
-  }
+```javascript
+module.exports = {
+  ...
+  module: {
+    rules: [
+      {
+        test: /\.mc$/
+        loader: 'medusa-loader',
+        options: {
+          path: path.resolve(process.cwd(), './'),
+        },
+      },
+    ],
+  },
+}
 ```
 
 ## 关于语法
 
-模版用到了consolidate这一模板引擎来处理vue-template-compiler的parseComponent函数解出来的<template>标签中的内容，所以支持以下模版语法
+### 模板
+
+模板解析利用了 consolidate 这一模板引擎对 template 中的内容进行处理，所以能够支持以下的语言：
+
 ```
 atpl
 bracket
@@ -69,20 +77,10 @@ walrus (website)
 whiskers
 ```
 
-比如你想用 pug，那么在 template 标签中加入 `lang="pug"` 即可
+### 样式
 
-css可以使用一下几种css编译神器，前提你需要安装对应的loader
-```
-stylus
-less
-scss
-sass
-```
+样式支持less、sass、scss、stylus预编译语言，当你想使用 sass 时，只需添加 `lang="sass"` 属性。请注意为了使用预编译的能力请安装相应的 npm 包工具（使用sass、scss时请安装node-sass工具）。
 
-比如你想用 sass，那么在 style 标签中加入  `lang="sass"` 即可
+## License
 
-script标签使用babel转换过的 script 标签中的内容
-
-## 高亮设置
-
-将高亮设置为 vuecomponent 即可
+[MIT](https://github.com/Oc-master/medusa-loader/blob/master/LICENSE)

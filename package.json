@@ -2,10 +2,26 @@
   "name": "@medusa/medusa-loader",
   "version": "1.0.0",
   "description": "medusa框架文件内容解析loader",
-  "main": "main.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Oc-master/medusa-loader.git"
+  },
+  "keywords": [
+    "wx",
+    "swan",
+    "webpack",
+    "loader"
+  ],
   "author": "O_c",
   "license": "MIT",
-  "private": true,
+  "bugs": {
+    "url": "https://github.com/Oc-master/medusa-loader/issues"
+  },
+  "homepage": "https://github.com/Oc-master/medusa-loader#readme",
   "dependencies": {
     "@babel/core": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
@@ -13,6 +29,5 @@
     "fs-extra": "^8.1.0",
     "loader-utils": "^1.2.3",
     "vue-template-compiler": "^2.6.10"
-  },
-  "keywords": ["wx", "swan", "loader"]
+  }
 }

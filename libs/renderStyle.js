@@ -67,15 +67,16 @@ module.exports = async function({ lang, content }) {
     stylesheet = await render(fullPath, stylesheet);
   }
 
-  stylesheet = postcss([
+  stylesheet = await postcss([
     require('stylelint')({
       configFile: './.stylelintrc',
       ignorePath: './.stylelintignore',
     }),
+    require('postcss-reporter')({ clearReportedMessages: true }),
     require('postcss-pxtorpx')({ propList: ['*'], multiplier: options.css_unit_ratio })
-  ]).process(stylesheet).css;
+  ]).process(stylesheet, { from: fullPath });
 
-  outputFileSync(outputPath, stylesheet);
+  outputFileSync(outputPath, stylesheet.css);
 
   return ''
 };

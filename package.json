@@ -30,6 +30,7 @@
     "loader-utils": "^1.2.3",
     "postcss": "^8.2.4",
     "postcss-pxtorpx": "^1.0.0",
+    "postcss-reporter": "^7.0.2",
     "stylelint": "^13.9.0",
     "vue-template-compiler": "^2.6.10"
   }

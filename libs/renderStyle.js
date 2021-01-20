@@ -1,5 +1,8 @@
+const path = require('path');
 const { outputFileSync } = require('fs-extra');
 const { getOptions, interpolateName } = require('loader-utils');
+const postcss = require('postcss');
+
 
 /** 解析预编译语言 */
 const con = {
@@ -63,6 +66,14 @@ module.exports = async function({ lang, content }) {
 
     stylesheet = await render(fullPath, stylesheet);
   }
+
+  stylesheet = postcss([
+    require('stylelint')({
+      configFile: './.stylelintrc',
+      ignorePath: './.stylelintignore',
+    }),
+    require('postcss-pxtorpx')({ propList: ['*'], multiplier: options.css_unit_ratio })
+  ]).process(stylesheet).css;
 
   outputFileSync(outputPath, stylesheet);
 

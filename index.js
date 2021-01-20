@@ -9,7 +9,7 @@ module.exports = function(content) {
   /** 异步执行的回调函数 */
   const callback = this.async();
   /** 获取解析结果 */
-  const { template, script, styles, customBlocks } = parseComponent(content);
+  const { template, script, styles } = parseComponent(content);
   /** 执行render函数 */
   if (template) {
     renderTemplate.call(this, template);

@@ -1,4 +1,3 @@
-const path = require('path');
 const { outputFileSync } = require('fs-extra');
 const { getOptions, interpolateName } = require('loader-utils');
 const postcss = require('postcss');

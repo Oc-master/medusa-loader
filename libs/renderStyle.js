@@ -1,7 +1,6 @@
 const { outputFileSync } = require('fs-extra');
 const { getOptions, interpolateName } = require('loader-utils');
 const postcss = require('postcss');
-const pxtorpx = require('postcss-pxtorpx');
 
 /** 解析预编译语言 */
 const con = {
@@ -66,16 +65,16 @@ module.exports = async function({ lang, content }) {
     stylesheet = await render(fullPath, stylesheet);
   }
 
-  const postcssOptions = {
-    multiplier: 1,
-    propList: ['*'],
-    replace: true,
-    mediaQuery: false,
-    minPixelValue: 0,
-  };
-  const processedCss = postcss(pxtorpx(postcssOptions)).process(stylesheet).css;
+  stylesheet = await postcss([
+    require('stylelint')({
+      configFile: './.stylelintrc',
+      ignorePath: './.stylelintignore',
+    }),
+    require('postcss-reporter')({ clearReportedMessages: true }),
+    require('postcss-pxtorpx')({ propList: ['*'], multiplier: options.css_unit_ratio })
+  ]).process(stylesheet, { from: fullPath });
 
-  outputFileSync(outputPath, processedCss);
+  outputFileSync(outputPath, stylesheet.css);
 
   return ''
 };

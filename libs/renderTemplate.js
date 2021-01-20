@@ -4,7 +4,7 @@ const { getOptions, interpolateName } = require('loader-utils');
 const cons = require('consolidate');
 
 const render = (lang, html, opt) => {
-  new Promise(resolve => {
+  return new Promise(resolve => {
     cons[lang].render(html, opt, (err, res) => {
       if (err) throw err;
       resolve(res);

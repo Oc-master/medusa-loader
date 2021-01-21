@@ -57,24 +57,30 @@ module.exports = async function({ lang, content }) {
   /** 文件输出路径 */
   const outputPath = dirPath.replace(origin, dist) + fileName;
 
-  let stylesheet = content.trim();
-
-  if (lang) {
-    const render = con[lang];
-
-    stylesheet = await render(fullPath, stylesheet);
-  }
-
-  stylesheet = await postcss([
+  /** stylelint 检测样式规范 */
+  postcss([
     require('stylelint')({
       configFile: './.stylelintrc',
       ignorePath: './.stylelintignore',
     }),
     require('postcss-reporter')({ clearReportedMessages: true }),
-    require('postcss-pxtorpx')({ propList: ['*'], multiplier: options.css_unit_ratio })
-  ]).process(stylesheet, { from: fullPath });
-
-  outputFileSync(outputPath, stylesheet.css);
+  ])
+    .process(content, { from: fullPath })
+    .then(async ({ css }) => {
+      let stylesheet = css;
+      /** 预编译语言处理 */
+      if (lang) {
+        const render = con[lang];
+        stylesheet = await render(fullPath, css);
+      }
+      /** pxtorpx 处理 */
+      const postcssOptions = {
+        propList: ['*'],
+        multiplier: options.css_unit_ratio,
+      };
+      stylesheet = await postcss([require('postcss-pxtorpx')(postcssOptions)]).process(stylesheet, { from: fullPath });
+      outputFileSync(outputPath, stylesheet.css.trim());
+    });
 
   return ''
 };

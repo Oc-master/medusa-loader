@@ -1,6 +1,6 @@
 {
   "name": "medusa-loader",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "medusa框架文件内容解析loader",
   "main": "index.js",
   "scripts": {
